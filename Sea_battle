@@ -1,0 +1,76 @@
+#include <iostream>
+#include <Windows.h>
+#define random(min,max) (min + rand() % (max - min + 1))
+using namespace std;
+
+//O - символ промаха 
+//¤ - символ попадания 
+//~ - заполнение поля 
+//⌂ - символ корабля
+
+// 16 / 164 / 127
+
+//void show() {
+//	for (int i = 0; i < 600; i++) {
+//		cout << i << " - " << (char)i << endl;
+//	}
+//}
+
+void fillField(char** arr) {
+	int size = _msize(arr) / sizeof(arr[0]);
+	for (int i = 0; i < size; i++) {
+		arr[i] = new char[size];
+		for (int j = 0; j < size; j++) {
+			arr[i][j] = '~';
+		}
+	}
+}
+
+void showField(char** arr) {
+	int size = _msize(arr) / sizeof(arr[0]);
+	cout << "  0 1 2 3 4 5 6 7 8 9" ;
+	for (int i = 0,k = 0; i < size; i++,k++) {
+		cout << endl << k << " ";
+		for (int j = 0; j < size; j++) {
+			cout << arr[i][j]<<" ";
+		}
+	}
+}
+
+void addShipsPlayer(char** arr) {
+	int size = _msize(arr) / sizeof(arr[0]);
+	int cordShip1;
+	int cordShip2;
+	cout << endl;
+	for (int i = 0; i < 4; i++) {
+		Sleep(2000);
+		system("cls");
+		cout << endl;
+		cout << "Введите координаты для расположения однопалубного корабля" << endl;
+		cin >> cordShip1 >> cordShip2;
+		arr[cordShip1][cordShip2] = 127;
+		showField(arr);
+	}
+	system("cls");
+
+}
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	srand(time(NULL));
+
+	char** field_player = new char*[10];
+	char** field_enemy = new char* [10];
+
+	cout << "Field of player" << endl;
+	fillField(field_player);
+	fillField(field_enemy);
+	Sleep(2000);
+	system("cls");
+	addShipsPlayer(field_player);
+	cout << endl;
+	cout << "Field of player" << endl;
+	showField(field_player);
+
+}
