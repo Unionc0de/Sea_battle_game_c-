@@ -28,11 +28,11 @@ void fillField(char** arr) {
 
 void showField(char** arr) {
 	int size = _msize(arr) / sizeof(arr[0]);
-	cout << "  0 1 2 3 4 5 6 7 8 9" ;
-	for (int i = 0,k = 0; i < size; i++,k++) {
+	cout << "  0 1 2 3 4 5 6 7 8 9";
+	for (int i = 0, k = 0; i < size; i++, k++) {
 		cout << endl << k << " ";
 		for (int j = 0; j < size; j++) {
-			cout << arr[i][j]<<" ";
+			cout << arr[i][j] << " ";
 		}
 	}
 }
@@ -41,36 +41,88 @@ void addShipsPlayer(char** arr) {
 	int size = _msize(arr) / sizeof(arr[0]);
 	int cordShip1;
 	int cordShip2;
-	cout << endl;
-	for (int i = 0; i < 4; i++) {
+	//cout << endl;
+	//for (int i = 0; i < 4; i++) {
+	//	Sleep(2000);
+	//	system("cls");
+	//	cout << endl;
+	//	cout << "Введите координаты для расположения однопалубного корабля" << endl;
+	//	cin >> cordShip1 >> cordShip2;
+	//	if (arr[cordShip1][cordShip2] == 127) {
+	//		cout << "Здесь уже есть корабль!" << endl;
+	//		showField(arr);
+	//		i--;
+	//		continue;
+	//	}
+	//	else {
+	//		arr[cordShip1][cordShip2] = 127;
+	//		showField(arr);
+	//	}
+	//}
+	//Sleep(2000);
+	//system("cls");
+
+	bool vertical = false;
+	for (int i = 0; i < 3; i++) {
 		Sleep(2000);
 		system("cls");
-		cout << endl;
-		cout << "Введите координаты для расположения однопалубного корабля" << endl;
+		cout << "Введите координаты переда коробля" << endl;
 		cin >> cordShip1 >> cordShip2;
-		arr[cordShip1][cordShip2] = 127;
-		showField(arr);
+
+
 	}
+
+}
+
+void addShipEnemy(char** arr) {
+	int cordShip1;
+	int cordShip2;
+	cout << endl;
+	for (int i = 0; i < 4; i++) {
+		system("cls");
+		cout << endl;
+		cordShip1 = random(0, 9);
+		cordShip2 = random(0, 9);
+		if (arr[cordShip1][cordShip2] == 127) {
+			i++;
+			continue;
+		}
+		else {
+			arr[cordShip1][cordShip2] = 127;
+			showField(arr);
+		}
+	}
+	Sleep(2000);
 	system("cls");
 
 }
+
 
 int main()
 {
 	setlocale(LC_ALL, "rus");
 	srand(time(NULL));
 
-	char** field_player = new char*[10];
+	char** field_player = new char* [10];
 	char** field_enemy = new char* [10];
 
-	cout << "Field of player" << endl;
 	fillField(field_player);
 	fillField(field_enemy);
+	/*cout << "Field of player" << endl;
+	showField(field_player);
 	Sleep(2000);
-	system("cls");
+	system("cls");*/
 	addShipsPlayer(field_player);
-	cout << endl;
+	/*addShipEnemy(field_enemy);*/
+	/*cout << endl;
 	cout << "Field of player" << endl;
 	showField(field_player);
+	Sleep(2000);
+	system("cls");
+	cout << endl;*/
+	/*cout << "Field of enemy" << endl;
+	showField(field_enemy);
+	Sleep(2000);*/
+	/*system("cls");*/
 
 }
