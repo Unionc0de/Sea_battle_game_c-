@@ -37,7 +37,8 @@ void showField(char** arr) {
 	}
 }
 
-void addShipsPlayer(char** arr) {
+void addShipsPlayer(char** arr) 
+{
 	int size = _msize(arr) / sizeof(arr[0]);
 	int cordShip1;
 	int cordShip2;
@@ -48,30 +49,93 @@ void addShipsPlayer(char** arr) {
 	//	cout << endl;
 	//	cout << "Введите координаты для расположения однопалубного корабля" << endl;
 	//	cin >> cordShip1 >> cordShip2;
-	//	if (arr[cordShip1][cordShip2] == 127) {
-	//		cout << "Здесь уже есть корабль!" << endl;
-	//		showField(arr);
-	//		i--;
-	//		continue;
-	//	}
-	//	else {
-	//		arr[cordShip1][cordShip2] = 127;
-	//		showField(arr);
-	//	}
+		/*if (arr[cordShip1][cordShip2] == 127) {
+			cout << "Здесь уже есть корабль!" << endl;
+			showField(arr);
+			i--;
+			continue;
+		}
+		else {
+			arr[cordShip1][cordShip2] = 127;
+			showField(arr);
+		}*/
 	//}
 	//Sleep(2000);
 	//system("cls");
 
 	bool vertical = false;
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 3; i++) 
+	{
 		Sleep(2000);
 		system("cls");
-		cout << "Введите координаты переда коробля" << endl;
+		int verHor = 0;
+		
+		cout << "Введите координаты переда двухпалубного коробля" << endl;
 		cin >> cordShip1 >> cordShip2;
+		cout << "Вертикально - 1. Горизонтально - 2" << endl;
+		cin >> verHor;
+		
+		if (verHor == 1)
+		{
+			vertical = true;
+		}
 
+		else if (verHor == 2) 
+		{
+			vertical = false;
+		}
 
+		if (vertical)
+		{
+			if (arr[cordShip1][cordShip2] == 127) 
+			{
+				cout << "Здесь уже есть корабль!" << endl;
+				showField(arr);
+				i--;
+				continue;
+			}
+
+			else if (arr[cordShip1-1][cordShip2] == 127)
+			{
+				cout << "Здесь уже есть корабль!" << endl;
+				showField(arr);
+				i--;
+				continue;
+			}
+
+			else 
+			{
+				arr[cordShip1][cordShip2] = 127;
+				arr[cordShip1 - 1][cordShip2] = 127;
+				showField(arr);
+			}
+		}
+		else if (vertical == false)
+		{
+			if (arr[cordShip1][cordShip2] == 127)
+			{
+				cout << "Здесь уже есть корабль!" << endl;
+				showField(arr);
+				i--;
+				continue;
+			}
+
+			else if (arr[cordShip1][cordShip2+1] == 127)
+			{
+				cout << "Здесь уже есть корабль!" << endl;
+				showField(arr);
+				i--;
+				continue;
+			}
+
+			else
+			{
+				arr[cordShip1][cordShip2] = 127;
+				arr[cordShip1][cordShip2+1] = 127;
+				showField(arr);
+			}
+		}
 	}
-
 }
 
 void addShipEnemy(char** arr) {
