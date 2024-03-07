@@ -37,19 +37,20 @@ void showField(char** arr) {
 	}
 }
 
-void addShipsPlayer(char** arr) 
+void addShipsPlayer(char** arr)
 {
 	int size = _msize(arr) / sizeof(arr[0]);
 	int cordShip1;
 	int cordShip2;
-	//cout << endl;
-	//for (int i = 0; i < 4; i++) {
-	//	Sleep(2000);
-	//	system("cls");
-	//	cout << endl;
-	//	cout << "Введите координаты для расположения однопалубного корабля" << endl;
-	//	cin >> cordShip1 >> cordShip2;
-		/*if (arr[cordShip1][cordShip2] == 127) {
+	bool vertical = false;
+	cout << endl;
+	for (int i = 0; i < 4; i++) {//Расположение однопалубного корабля
+		Sleep(2000);
+		system("cls");
+		cout << endl;
+		cout << "Введите координаты для расположения однопалубного корабля" << endl;
+		cin >> cordShip1 >> cordShip2;
+		if (arr[cordShip1][cordShip2] == 127) {
 			cout << "Здесь уже есть корабль!" << endl;
 			showField(arr);
 			i--;
@@ -58,36 +59,42 @@ void addShipsPlayer(char** arr)
 		else {
 			arr[cordShip1][cordShip2] = 127;
 			showField(arr);
-		}*/
-	//}
-	//Sleep(2000);
-	//system("cls");
+		}
+		}
+		Sleep(2000);
+		system("cls");
 
-	bool vertical = false;
-	for (int i = 0; i < 3; i++) 
+	for (int i = 0; i < 3; i++) //Расположение двухпалубного корабля
 	{
 		Sleep(2000);
 		system("cls");
 		int verHor = 0;
-		
+
 		cout << "Введите координаты переда двухпалубного коробля" << endl;
 		cin >> cordShip1 >> cordShip2;
 		cout << "Вертикально - 1. Горизонтально - 2" << endl;
 		cin >> verHor;
-		
+
 		if (verHor == 1)
 		{
 			vertical = true;
 		}
 
-		else if (verHor == 2) 
+		else if (verHor == 2)
 		{
 			vertical = false;
 		}
 
 		if (vertical)
 		{
-			if (arr[cordShip1][cordShip2] == 127) 
+			if (cordShip1 == 0) {
+				cout << "Здесь нельзя поставить корабль!" << endl;
+				showField(arr);
+				i--;
+				continue;
+			}
+			
+			else if (arr[cordShip1][cordShip2] == 127)
 			{
 				cout << "Здесь уже есть корабль!" << endl;
 				showField(arr);
@@ -95,7 +102,7 @@ void addShipsPlayer(char** arr)
 				continue;
 			}
 
-			else if (arr[cordShip1-1][cordShip2] == 127)
+			else if (arr[cordShip1 - 1][cordShip2] == 127)
 			{
 				cout << "Здесь уже есть корабль!" << endl;
 				showField(arr);
@@ -103,7 +110,7 @@ void addShipsPlayer(char** arr)
 				continue;
 			}
 
-			else 
+			else
 			{
 				arr[cordShip1][cordShip2] = 127;
 				arr[cordShip1 - 1][cordShip2] = 127;
@@ -120,7 +127,15 @@ void addShipsPlayer(char** arr)
 				continue;
 			}
 
-			else if (arr[cordShip1][cordShip2+1] == 127)
+			else if (cordShip2 == 9)
+			{
+				cout << "Здесь нельзя поставить корабль!" << endl;
+				showField(arr);
+				i--;
+				continue;
+			}
+
+			else if (arr[cordShip1][cordShip2 + 1] == 127)
 			{
 				cout << "Здесь уже есть корабль!" << endl;
 				showField(arr);
@@ -131,10 +146,169 @@ void addShipsPlayer(char** arr)
 			else
 			{
 				arr[cordShip1][cordShip2] = 127;
-				arr[cordShip1][cordShip2+1] = 127;
+				arr[cordShip1][cordShip2 + 1] = 127;
 				showField(arr);
 			}
 		}
+	}
+
+	for (int i = 0; i < 2; i++)//Расположение трехпалубного корабля
+	{
+		int verHor;
+		Sleep(2000);
+		system("cls");
+
+		cout << "Введите координаты переда трехпалубного коробля" << endl;
+		cin >> cordShip1 >> cordShip2;
+		cout << "Вертикально - 1. Горизонтально - 2" << endl;
+		cin >> verHor;
+
+		if (verHor == 1)
+		{
+			vertical = true;
+		}
+
+		else if (verHor == 2)
+		{
+			vertical = false;
+		}
+
+		if (vertical) 
+		{
+			if (cordShip1 == 0|| cordShip1 == 1) {
+				cout << "Здесь нельзя поставить корабль!" << endl;
+				showField(arr);
+				i--;
+				continue;
+			}
+		
+			else if (arr[cordShip1][cordShip2] == 127|| arr[cordShip1-1][cordShip2] == 127
+			|| arr[cordShip1-2][cordShip2] == 127)
+			{
+				cout << "Здесь уже есть корабль!" << endl;
+				showField(arr);
+				i--;
+				continue;
+			}
+
+			else {
+				for (int i = 0; i < 3; i++)
+				{
+					arr[cordShip1-i][cordShip2] = 127;
+				}
+				showField(arr);
+			}	
+		}
+
+		else if (vertical == false) {
+			if (cordShip2 == 8 || cordShip2 == 9)
+			{
+				cout << "Здесь нельзя поставить корабль!" << endl;
+				showField(arr);
+				i--;
+				continue;
+			}
+
+			else if (arr[cordShip1][cordShip2] == 127 || arr[cordShip1][cordShip2+1] == 127
+				|| arr[cordShip1][cordShip2+2] == 127)
+			{
+				cout << "Здесь уже есть корабль!" << endl;
+				showField(arr);
+				i--;
+				continue;
+			}
+
+			else {
+				for (int i = 0; i < 3; i++)
+				{
+					arr[cordShip1][cordShip2+i] = 127;
+				}
+				showField(arr);
+			}
+		}
+	}
+	
+	for (int i = 0; i < 1; i++)//Заполнение четырехпалубного
+	{
+		int verHor;
+		Sleep(2000);
+		system("cls");
+
+		cout << "Введите координаты переда четырехпалубного коробля" << endl;
+		cin >> cordShip1 >> cordShip2;
+		cout << "Вертикально - 1. Горизонтально - 2" << endl;
+		cin >> verHor;
+
+		if (verHor == 1)
+		{
+			vertical = true;
+		}
+
+		else if (verHor == 2)
+		{
+			vertical = false;
+		}
+
+		if (vertical)
+		{
+			if (cordShip1 == 0 
+				|| cordShip1 == 1 
+				|| cordShip1 == 2) 
+			{
+				cout << "Здесь нельзя поставить корабль!" << endl;
+				showField(arr);
+				i--;
+				continue;
+			}
+
+			else if (arr[cordShip1][cordShip2] == 127 
+				|| arr[cordShip1 - 1][cordShip2] == 127
+				|| arr[cordShip1 - 3][cordShip2] == 127
+				|| arr[cordShip1 - 2][cordShip2] == 127 )
+			{
+				cout << "Здесь уже есть корабль!" << endl;
+				showField(arr);
+				i--;
+				continue;
+			}
+
+			else {
+				for (int i = 0; i < 4; i++)
+				{
+					arr[cordShip1 - i][cordShip2] = 127;
+				}
+				showField(arr);
+			}
+		}
+		else if (vertical == false) {
+			if (cordShip2 == 8 || cordShip2 == 9 || cordShip2 == 7)
+			{
+				cout << "Здесь нельзя поставить корабль!" << endl;
+				showField(arr);
+				i--;
+				continue;
+			}
+
+			else if (arr[cordShip1][cordShip2] == 127 
+				|| arr[cordShip1][cordShip2 + 1] == 127
+				|| arr[cordShip1][cordShip2 + 3] == 127
+				|| arr[cordShip1][cordShip2 + 2] == 127)
+			{
+				cout << "Здесь уже есть корабль!" << endl;
+				showField(arr);
+				i--;
+				continue;
+			}
+
+			else {
+				for (int i = 0; i < 4; i++)
+				{
+					arr[cordShip1][cordShip2 + i] = 127;
+				}
+				showField(arr);
+			}
+		}
+
 	}
 }
 
