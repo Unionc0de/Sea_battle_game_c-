@@ -50,13 +50,21 @@ void addShipsPlayer(char** arr)
 		cout << endl;
 		cout << "Введите координаты для расположения однопалубного корабля" << endl;
 		cin >> cordShip1 >> cordShip2;
+		
+		
 		if (arr[cordShip1][cordShip2] == 127) {
 			cout << "Здесь уже есть корабль!" << endl;
 			showField(arr);
 			i--;
 			continue;
 		}
-
+		
+		if (cordShip1 == 0 || cordShip1 == 9)
+		{
+			cordShip1 += 1;
+			cout << cordShip1 << " " << cordShip2 << endl;
+		}
+		
 		else if (arr[cordShip1+1][cordShip2] == 127
 			|| arr[cordShip1 - 1][cordShip2] == 127
 			|| arr[cordShip1][cordShip2 + 1] == 127
@@ -83,7 +91,7 @@ void addShipsPlayer(char** arr)
 
 	for (int i = 0; i < 3; i++) //Расположение двухпалубного корабля
 	{
-		Sleep(2000);
+		Sleep(10000);
 		system("cls");
 		int verHor = 0;
 
@@ -91,6 +99,7 @@ void addShipsPlayer(char** arr)
 		cin >> cordShip1 >> cordShip2;
 		cout << "Вертикально - 1. Горизонтально - 2" << endl;
 		cin >> verHor;
+		cout << cordShip1 - 2 << " " << cordShip2 - 1 << endl;
 
 		if (verHor == 1)
 		{
@@ -111,9 +120,26 @@ void addShipsPlayer(char** arr)
 				continue;
 			}
 
-			else if (arr[cordShip1][cordShip2] == 127)
+			else if (cordShip1 == 1 || cordShip1 == 9)
 			{
-				cout << "Здесь уже есть корабль!" << endl;
+				cout << "Здесь нельзя поставить корабль!" << endl;
+				showField(arr);
+				i--;
+				continue;
+			}
+
+			else if (arr[cordShip1 + 1][cordShip2] == 127
+				|| arr[cordShip1 - 2][cordShip2] == 127
+				|| arr[cordShip1][cordShip2 + 1] == 127
+				|| arr[cordShip1][cordShip2 - 1] == 127
+				|| arr[cordShip1 - 2][cordShip2 - 1] == 127
+				|| arr[cordShip1 - 2][cordShip2 + 1] == 127
+				|| arr[cordShip1-1][cordShip2 + 1] == 127
+				|| arr[cordShip1-1][cordShip2 - 1] == 127
+				|| arr[cordShip1 + 1][cordShip2 - 1] == 127
+				|| arr[cordShip1 + 1][cordShip2 + 1] == 127)
+			{
+				cout << "Здесь нельзя поставить корабль!" << endl;
 				showField(arr);
 				i--;
 				continue;
