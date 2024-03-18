@@ -44,161 +44,313 @@ void addShipsPlayer(char** arr)
 	int cordShip2;
 	bool vertical = false;
 	cout << endl;
-	for (int i = 0; i < 4; i++) {//Расположение однопалубного корабля
-		Sleep(5000);
-		system("cls");
-		cout << endl;
-		cout << "Введите координаты для расположения однопалубного корабля" << endl;
-		cin >> cordShip1 >> cordShip2;
-		
-		
-		if (arr[cordShip1][cordShip2] == 127) {
-			cout << "Здесь уже есть корабль!" << endl;
-			showField(arr);
-			i--;
-			continue;
-		}
-		
-		if (cordShip1 == 0 || cordShip1 == 9)
-		{
-			cordShip1 += 1;
-			cout << cordShip1 << " " << cordShip2 << endl;
-		}
-		
-		else if (arr[cordShip1+1][cordShip2] == 127
-			|| arr[cordShip1 - 1][cordShip2] == 127
-			|| arr[cordShip1][cordShip2 + 1] == 127
-			|| arr[cordShip1][cordShip2 - 1] == 127 
-			|| arr[cordShip1+1][cordShip2 + 1] == 127
-			|| arr[cordShip1+1][cordShip2 - 1] == 127
-			|| arr[cordShip1 - 1][cordShip2 + 1] == 127
-			|| arr[cordShip1 - 1][cordShip2 - 1] == 127)
-		{
-			cout << "Здесь нельзя поставить корабль!" << endl;
-			showField(arr);
-			i--;
-			continue;
-		}
+	//for (int i = 0; i < 4; i++) {//Расположение однопалубного корабля
+	//	Sleep(7000);
+	//	system("cls");
+	//	cout << endl;
+	//	cout << "Введите координаты для расположения однопалубного корабля" << endl;
+	//	cin >> cordShip1 >> cordShip2;
+	//	
+	//	
+	//	if (arr[cordShip1][cordShip2] == 127) {
+	//		cout << "Здесь уже есть корабль!" << endl;
+	//		showField(arr);
+	//		i--;
+	//		continue;
+	//	}
+	//	
+	//	else if (cordShip1 == 0)
+	//	{
+	//		if (arr[cordShip1 +1][cordShip2] == 127
+	//			|| arr[cordShip1][cordShip2 + 1] == 127
+	//			|| arr[cordShip1][cordShip2 - 1] == 127
+	//			|| arr[cordShip1 + 1][cordShip2 + 1] == 127
+	//			|| arr[cordShip1 + 1][cordShip2 - 1] == 127)
+	//		{
+	//			cout << "Здесь нельзя поставить корабль!" << endl;
+	//			showField(arr);
+	//			i--;
+	//			continue;
+	//		}
+	//		
+	//		else
+	//		{
+	//			arr[cordShip1][cordShip2] = 127;
+	//			showField(arr);
+	//		}
+	//	}
 
-		else 
-		{
-			arr[cordShip1][cordShip2] = 127;
-			showField(arr);
-		}
-	}
-	Sleep(2000);
-	system("cls");
+	//	else if (cordShip1 == 9)
+	//	{
+	//		if (arr[cordShip1 - 1][cordShip2] == 127
+	//			|| arr[cordShip1][cordShip2 + 1] == 127
+	//			|| arr[cordShip1][cordShip2 - 1] == 127
+	//			|| arr[cordShip1 - 1][cordShip2 + 1] == 127
+	//			|| arr[cordShip1 - 1][cordShip2 - 1] == 127) 
+	//		{
+	//			cout << "Здесь нельзя поставить корабль!" << endl;
+	//			showField(arr);
+	//			i--;
+	//			continue;
+	//		}
 
-	for (int i = 0; i < 3; i++) //Расположение двухпалубного корабля
-	{
-		Sleep(10000);
-		system("cls");
-		int verHor = 0;
+	//		else
+	//		{
+	//			arr[cordShip1][cordShip2] = 127;
+	//			showField(arr);
+	//		}
+	//	}
+	//	
+	//	else if (arr[cordShip1+1][cordShip2] == 127
+	//		|| arr[cordShip1 - 1][cordShip2] == 127
+	//		|| arr[cordShip1][cordShip2 + 1] == 127
+	//		|| arr[cordShip1][cordShip2 - 1] == 127 
+	//		|| arr[cordShip1+1][cordShip2 + 1] == 127
+	//		|| arr[cordShip1+1][cordShip2 - 1] == 127
+	//		|| arr[cordShip1 - 1][cordShip2 + 1] == 127
+	//		|| arr[cordShip1 - 1][cordShip2 - 1] == 127)
+	//	{
+	//		cout << "Здесь нельзя поставить корабль!" << endl;
+	//		showField(arr);
+	//		i--;
+	//		continue;
+	//	}
 
-		cout << "Введите координаты переда двухпалубного коробля" << endl;
-		cin >> cordShip1 >> cordShip2;
-		cout << "Вертикально - 1. Горизонтально - 2" << endl;
-		cin >> verHor;
-		cout << cordShip1 - 2 << " " << cordShip2 - 1 << endl;
+	//	else 
+	//	{
+	//		arr[cordShip1][cordShip2] = 127;
+	//		showField(arr);
+	//	}
+	//}
 
-		if (verHor == 1)
-		{
-			vertical = true;
-		}
+	//for (int i = 0; i < 3; i++) //Расположение двухпалубного корабля
+	//{
+	//	Sleep(7000);
+	//	system("cls");
+	//	int verHor = 0;
 
-		else if (verHor == 2)
-		{
-			vertical = false;
-		}
+	//	cout << "Введите координаты переда двухпалубного коробля" << endl;
+	//	cin >> cordShip1 >> cordShip2;
+	//	cout << "Вертикально - 1. Горизонтально - 2" << endl;
+	//	cin >> verHor;
 
-		if (vertical)
-		{
-			if (cordShip1 == 0) {
-				cout << "Здесь нельзя поставить корабль!" << endl;
-				showField(arr);
-				i--;
-				continue;
-			}
+	//	if (verHor == 1)
+	//	{
+	//		vertical = true;
+	//	}
 
-			else if (cordShip1 == 1 || cordShip1 == 9)
-			{
-				cout << "Здесь нельзя поставить корабль!" << endl;
-				showField(arr);
-				i--;
-				continue;
-			}
+	//	else if (verHor == 2)
+	//	{
+	//		vertical = false;
+	//	}
 
-			else if (arr[cordShip1 + 1][cordShip2] == 127
-				|| arr[cordShip1 - 2][cordShip2] == 127
-				|| arr[cordShip1][cordShip2 + 1] == 127
-				|| arr[cordShip1][cordShip2 - 1] == 127
-				|| arr[cordShip1 - 2][cordShip2 - 1] == 127
-				|| arr[cordShip1 - 2][cordShip2 + 1] == 127
-				|| arr[cordShip1-1][cordShip2 + 1] == 127
-				|| arr[cordShip1-1][cordShip2 - 1] == 127
-				|| arr[cordShip1 + 1][cordShip2 - 1] == 127
-				|| arr[cordShip1 + 1][cordShip2 + 1] == 127)
-			{
-				cout << "Здесь нельзя поставить корабль!" << endl;
-				showField(arr);
-				i--;
-				continue;
-			}
+	//	if (vertical)
+	//	{
+	//		if (cordShip1 <= 0) {
+	//			cout << "Здесь нельзя поставить корабль!" << endl;
+	//			showField(arr);
+	//			i--;
+	//			continue;
+	//		}
 
-			else if (arr[cordShip1 - 1][cordShip2] == 127)
-			{
-				cout << "Здесь уже есть корабль!" << endl;
-				showField(arr);
-				i--;
-				continue;
-			}
+	//		else if (cordShip1 == 1)
+	//		{
+	//			if (arr[cordShip1 + 1][cordShip2] == 127
+	//				|| arr[cordShip1 - 1][cordShip2 + 1] == 127
+	//				|| arr[cordShip1 - 1][cordShip2 - 1] == 127
+	//				|| arr[cordShip1 + 1][cordShip2 - 1] == 127
+	//				|| arr[cordShip1 + 1][cordShip2 + 1] == 127
+	//				|| arr[cordShip1][cordShip2 + 1] == 127
+	//				|| arr[cordShip1][cordShip2 - 1] == 127)
+	//			{
+	//				cout << "Здесь нельзя поставить корабль!" << endl;
+	//				showField(arr);
+	//				i--;
+	//				continue;
+	//			}
 
-			else
-			{
-				arr[cordShip1][cordShip2] = 127;
-				arr[cordShip1 - 1][cordShip2] = 127;
-				showField(arr);
-			}
-		}
-		else if (vertical == false)
-		{
-			if (arr[cordShip1][cordShip2] == 127)
-			{
-				cout << "Здесь уже есть корабль!" << endl;
-				showField(arr);
-				i--;
-				continue;
-			}
+	//			else 
+	//			{
+	//				arr[cordShip1][cordShip2] = 127;
+	//				arr[cordShip1 - 1][cordShip2] = 127;
+	//				showField(arr);
+	//			}
+	//		}
 
-			else if (cordShip2 == 9)
-			{
-				cout << "Здесь нельзя поставить корабль!" << endl;
-				showField(arr);
-				i--;
-				continue;
-			}
+	//		else if (cordShip1 == 9)
+	//		{
+	//			if (arr[cordShip1 - 1][cordShip2 + 1] == 127
+	//				|| arr[cordShip1 - 2][cordShip2] == 127
+	//				|| arr[cordShip1 - 2][cordShip2 - 1] == 127
+	//				|| arr[cordShip1 - 2][cordShip2 + 1] == 127
+	//				|| arr[cordShip1 - 1][cordShip2 - 1] == 127
+	//				|| arr[cordShip1][cordShip2 + 1] == 127
+	//				|| arr[cordShip1][cordShip2 - 1] == 127)
+	//			{
+	//				cout << "Здесь нельзя поставить корабль!" << endl;
+	//				showField(arr);
+	//				i--;
+	//				continue;
+	//			}
 
-			else if (arr[cordShip1][cordShip2 + 1] == 127)
-			{
-				cout << "Здесь уже есть корабль!" << endl;
-				showField(arr);
-				i--;
-				continue;
-			}
+	//			else
+	//			{
+	//				arr[cordShip1][cordShip2] = 127;
+	//				arr[cordShip1 - 1][cordShip2] = 127;
+	//				showField(arr);
+	//			}
+	//		}
 
-			else
-			{
-				arr[cordShip1][cordShip2] = 127;
-				arr[cordShip1][cordShip2 + 1] = 127;
-				showField(arr);
-			}
-		}
-	}
+	//		else if (arr[cordShip1 + 1][cordShip2] == 127
+	//			|| arr[cordShip1 - 2][cordShip2] == 127
+	//			|| arr[cordShip1][cordShip2 + 1] == 127
+	//			|| arr[cordShip1][cordShip2 - 1] == 127
+	//			|| arr[cordShip1 - 2][cordShip2 - 1] == 127
+	//			|| arr[cordShip1 - 2][cordShip2 + 1] == 127
+	//			|| arr[cordShip1-1][cordShip2 + 1] == 127
+	//			|| arr[cordShip1-1][cordShip2 - 1] == 127
+	//			|| arr[cordShip1 + 1][cordShip2 - 1] == 127
+	//			|| arr[cordShip1 + 1][cordShip2 + 1] == 127)
+	//		{
+	//			cout << "Здесь нельзя поставить корабль!" << endl;
+	//			showField(arr);
+	//			i--;
+	//			continue;
+	//		}
+
+	//		else if (arr[cordShip1 - 1][cordShip2] == 127)
+	//		{
+	//			cout << "Здесь уже есть корабль!" << endl;
+	//			showField(arr);
+	//			i--;
+	//			continue;
+	//		}
+
+	//		else
+	//		{
+	//			arr[cordShip1][cordShip2] = 127;
+	//			arr[cordShip1 - 1][cordShip2] = 127;
+	//			showField(arr);
+	//		}
+	//	}
+	//	else if (vertical == false)
+	//	{
+	//		if (arr[cordShip1][cordShip2] == 127)
+	//		{
+	//			cout << "Здесь уже есть корабль!" << endl;
+	//			showField(arr);
+	//			i--;
+	//			continue;
+	//		}
+
+	//		else if (cordShip2 >= 9)
+	//		{
+	//			cout << "Здесь нельзя поставить корабль!" << endl;
+	//			showField(arr);
+	//			i--;
+	//			continue;
+	//		}
+
+	//		else if (cordShip2 == 8) 
+	//		{
+	//			if (arr[cordShip1 + 1][cordShip2] == 127
+	//				|| arr[cordShip1 - 1][cordShip2] == 127
+	//				|| arr[cordShip1][cordShip2 - 1] == 127
+	//				|| arr[cordShip1 - 1][cordShip2 - 1] == 127
+	//				|| arr[cordShip1 - 1][cordShip2 + 1] == 127
+	//				|| arr[cordShip1 + 1][cordShip2 + 1] == 127
+	//				|| arr[cordShip1 + 1][cordShip2 - 1] == 127)
+	//			{
+	//				cout << "Здесь нельзя поставить корабль!" << endl;
+	//				showField(arr);
+	//				i--;
+	//				continue;
+	//			}
+
+	//			else 
+	//			{
+	//				arr[cordShip1][cordShip2] = 127;
+	//				arr[cordShip1][cordShip2 + 1] = 127;
+	//				showField(arr);
+	//			}
+	//		}
+
+	//		else if(cordShip1 == 0)
+	//		{
+	//			if (arr[cordShip1 + 1][cordShip2] == 127
+	//				|| arr[cordShip1][cordShip2 - 1] == 127
+	//				|| arr[cordShip1][cordShip2 + 2] == 127
+	//				|| arr[cordShip1 + 1][cordShip2 + 2] == 127
+	//				|| arr[cordShip1 + 1][cordShip2 + 1] == 127
+	//				|| arr[cordShip1 + 1][cordShip2 - 1] == 127)
+	//			{
+	//				cout << "Здесь нельзя поставить корабль!" << endl;
+	//				showField(arr);
+	//				i--;
+	//				continue;
+	//			}
+
+	//			else
+	//			{
+	//				arr[cordShip1][cordShip2] = 127;
+	//				arr[cordShip1][cordShip2 + 1] = 127;
+	//				showField(arr);
+	//			}
+	//		}
+
+	//		else if (cordShip1 == 9)
+	//		{
+	//			if  (arr[cordShip1 - 1][cordShip2] == 127
+	//				|| arr[cordShip1][cordShip2 - 1] == 127
+	//				|| arr[cordShip1][cordShip2 + 2] == 127
+	//				|| arr[cordShip1 - 1][cordShip2 - 1] == 127
+	//				|| arr[cordShip1 - 1][cordShip2 + 1] == 127
+	//				|| arr[cordShip1 - 1][cordShip2 + 2] == 127)
+	//			{
+	//				cout << "Здесь нельзя поставить корабль!" << endl;
+	//				showField(arr);
+	//				i--;
+	//				continue;
+	//			}
+
+	//			else
+	//			{
+	//				arr[cordShip1][cordShip2] = 127;
+	//				arr[cordShip1][cordShip2 + 1] = 127;
+	//				showField(arr);
+	//			}
+	//		}
+	//		
+	//		else if (arr[cordShip1+1][cordShip2] == 127
+	//			     ||arr[cordShip1-1][cordShip2] == 127
+	//				 ||arr[cordShip1][cordShip2-1] == 127
+	//				 || arr[cordShip1][cordShip2+2] == 127
+	//				 || arr[cordShip1-1][cordShip2-1] == 127
+	//				 || arr[cordShip1-1][cordShip2+1] == 127
+	//				 || arr[cordShip1-1][cordShip2+2] == 127
+	//				 || arr[cordShip1+1][cordShip2+2] == 127
+	//				 || arr[cordShip1+1][cordShip2+1] == 127
+	//				 || arr[cordShip1+1][cordShip2-1] == 127)
+	//		{
+	//			cout << "Здесь уже есть корабль!" << endl;
+	//			showField(arr);
+	//			i--;
+	//			continue;
+	//		}
+
+	//		else
+	//		{
+	//			arr[cordShip1][cordShip2] = 127;
+	//			arr[cordShip1][cordShip2 + 1] = 127;
+	//			showField(arr);
+	//		}
+	//	}
+	//}
 
 	for (int i = 0; i < 2; i++)//Расположение трехпалубного корабля
 	{
 		int verHor;
-		Sleep(2000);
+		Sleep(7000);
 		system("cls");
 
 		cout << "Введите координаты переда трехпалубного коробля" << endl;
@@ -218,15 +370,79 @@ void addShipsPlayer(char** arr)
 
 		if (vertical)
 		{
-			if (cordShip1 == 0 || cordShip1 == 1) {
+			if (cordShip1 <= 1) {
 				cout << "Здесь нельзя поставить корабль!" << endl;
 				showField(arr);
 				i--;
 				continue;
 			}
 
-			else if (arr[cordShip1][cordShip2] == 127 || arr[cordShip1 - 1][cordShip2] == 127
-				|| arr[cordShip1 - 2][cordShip2] == 127)
+			else if (cordShip1 == 2)
+			{
+				if (arr[cordShip1 + 1][cordShip2] == 127
+					|| arr[cordShip1][cordShip2 + 1] == 127
+					|| arr[cordShip1][cordShip2 - 1] == 127
+					|| arr[cordShip1 - 2][cordShip2 - 1] == 127
+					|| arr[cordShip1 - 2][cordShip2 + 1] == 127
+					|| arr[cordShip1 - 1][cordShip2 + 1] == 127
+					|| arr[cordShip1 - 1][cordShip2 - 1] == 127
+					|| arr[cordShip1 + 1][cordShip2 - 1] == 127
+					|| arr[cordShip1 + 1][cordShip2 + 1] == 127) 
+				{
+					cout << "Здесь уже есть корабль!" << endl;
+					showField(arr);
+					i--;
+					continue;
+				}
+				
+				else {
+					for (int i = 0; i < 3; i++)
+					{
+						arr[cordShip1 - i][cordShip2] = 127;
+					}
+					showField(arr);
+				}
+			}
+
+			else if (cordShip1 == 9) 
+			{
+				if (arr[cordShip1 - 3][cordShip2] == 127
+					|| arr[cordShip1][cordShip2 + 1] == 127
+					|| arr[cordShip1][cordShip2 - 1] == 127
+					|| arr[cordShip1 - 2][cordShip2 - 1] == 127
+					|| arr[cordShip1 - 2][cordShip2 + 1] == 127
+					|| arr[cordShip1 - 3][cordShip2 - 1] == 127
+					|| arr[cordShip1 - 3][cordShip2 + 1] == 127
+					|| arr[cordShip1 - 1][cordShip2 + 1] == 127
+					|| arr[cordShip1 - 1][cordShip2 - 1] == 127) 
+				{
+					cout << "Здесь уже есть корабль!" << endl;
+					showField(arr);
+					i--;
+					continue;
+				}
+
+				else {
+					for (int i = 0; i < 3; i++)
+					{
+						arr[cordShip1 - i][cordShip2] = 127;
+					}
+					showField(arr);
+				}
+			}
+
+			else if (arr[cordShip1 + 1][cordShip2] == 127
+				|| arr[cordShip1 - 3][cordShip2] == 127
+				|| arr[cordShip1][cordShip2 + 1] == 127
+				|| arr[cordShip1][cordShip2 - 1] == 127
+				|| arr[cordShip1 - 2][cordShip2 - 1] == 127
+				|| arr[cordShip1 - 2][cordShip2 + 1] == 127
+				|| arr[cordShip1 - 3][cordShip2 - 1] == 127
+				|| arr[cordShip1 - 3][cordShip2 + 1] == 127
+				|| arr[cordShip1 - 1][cordShip2 + 1] == 127
+				|| arr[cordShip1 - 1][cordShip2 - 1] == 127
+				|| arr[cordShip1 + 1][cordShip2 - 1] == 127
+				|| arr[cordShip1 + 1][cordShip2 + 1] == 127)
 			{
 				cout << "Здесь уже есть корабль!" << endl;
 				showField(arr);
@@ -244,7 +460,8 @@ void addShipsPlayer(char** arr)
 		}
 
 		else if (vertical == false) {
-			if (cordShip2 == 8 || cordShip2 == 9)
+			
+			if (cordShip2 >= 8)
 			{
 				cout << "Здесь нельзя поставить корабль!" << endl;
 				showField(arr);
@@ -252,8 +469,31 @@ void addShipsPlayer(char** arr)
 				continue;
 			}
 
-			else if (arr[cordShip1][cordShip2] == 127 || arr[cordShip1][cordShip2 + 1] == 127
-				|| arr[cordShip1][cordShip2 + 2] == 127)
+			else if (cordShip2 == 7) 
+			{
+
+			}
+			
+			else if (cordShip1 == 0) {
+
+			}
+
+			else if (cordShip1 == 9) {
+
+			}
+
+			else if (arr[cordShip1 + 1][cordShip2] == 127
+				|| arr[cordShip1 - 1][cordShip2] == 127
+				|| arr[cordShip1][cordShip2 - 1] == 127
+				|| arr[cordShip1][cordShip2 + 3] == 127
+				|| arr[cordShip1 - 1][cordShip2 - 1] == 127
+				|| arr[cordShip1 - 1][cordShip2 + 1] == 127
+				|| arr[cordShip1 - 1][cordShip2 + 2] == 127
+				|| arr[cordShip1 + 1][cordShip2 + 2] == 127
+				|| arr[cordShip1 - 1][cordShip2 + 2] == 127
+				|| arr[cordShip1 + 1][cordShip2 + 2] == 127
+				|| arr[cordShip1 + 1][cordShip2 + 1] == 127
+				|| arr[cordShip1 + 1][cordShip2 - 1] == 127)
 			{
 				cout << "Здесь уже есть корабль!" << endl;
 				showField(arr);
@@ -361,12 +601,51 @@ void addShipEnemy(char** arr) {
 	int cordShip2;
 	bool vertical = false;
 	cout << endl;
-	for (int i = 0; i < 4; i++) {//Расположение однопалубного корабля
+	for (int i = 0; i < 4; i++) 
+	{//Расположение однопалубного корабля
+		
 		cordShip1 = random(0, 9);
 		cordShip2 = random(0, 9);
+		
 		if (arr[cordShip1][cordShip2] == 127) {
 			i--;
 			continue;
+		}
+
+		else if (cordShip1 == 0)
+		{
+			if (arr[cordShip1 + 1][cordShip2] == 127
+				|| arr[cordShip1][cordShip2 + 1] == 127
+				|| arr[cordShip1][cordShip2 - 1] == 127
+				|| arr[cordShip1 + 1][cordShip2 + 1] == 127
+				|| arr[cordShip1 + 1][cordShip2 - 1] == 127)
+			{
+				i--;
+				continue;
+			}
+
+			else
+			{
+				arr[cordShip1][cordShip2] = 127;
+			}
+		}
+
+		else if (cordShip1 == 9)
+		{
+			if (arr[cordShip1 - 1][cordShip2] == 127
+				|| arr[cordShip1][cordShip2 + 1] == 127
+				|| arr[cordShip1][cordShip2 - 1] == 127
+				|| arr[cordShip1 - 1][cordShip2 + 1] == 127
+				|| arr[cordShip1 - 1][cordShip2 - 1] == 127)
+			{
+				i--;
+				continue;
+			}
+
+			else
+			{
+				arr[cordShip1][cordShip2] = 127;
+			}
 		}
 
 		else if (arr[cordShip1 + 1][cordShip2] == 127
@@ -382,15 +661,17 @@ void addShipEnemy(char** arr) {
 			continue;
 		}
 
-		else {
+		else
+		{
 			arr[cordShip1][cordShip2] = 127;
 		}
 	}
+	
 	for (int i = 0; i < 3; i++) //Расположение двухпалубного корабля
 	{
+		int verHor = random(1,2);
 		cordShip1 = random(0, 9);
 		cordShip2 = random(0, 9);
-		int verHor = random(1, 2);
 
 		if (verHor == 1)
 		{
@@ -404,12 +685,63 @@ void addShipEnemy(char** arr) {
 
 		if (vertical)
 		{
-			if (cordShip1 == 0) {
+			if (cordShip1 <= 0) {
 				i--;
 				continue;
 			}
 
-			else if (arr[cordShip1][cordShip2] == 127)
+			else if (cordShip1 == 1)
+			{
+				if (arr[cordShip1 + 1][cordShip2] == 127
+					|| arr[cordShip1 - 1][cordShip2 + 1] == 127
+					|| arr[cordShip1 - 1][cordShip2 - 1] == 127
+					|| arr[cordShip1 + 1][cordShip2 - 1] == 127
+					|| arr[cordShip1 + 1][cordShip2 + 1] == 127
+					|| arr[cordShip1][cordShip2 + 1] == 127
+					|| arr[cordShip1][cordShip2 - 1] == 127)
+				{
+					i--;
+					continue;
+				}
+
+				else 
+				{
+					arr[cordShip1][cordShip2] = 127;
+					arr[cordShip1 - 1][cordShip2] = 127;
+				}
+			}
+
+			else if (cordShip1 == 9)
+			{
+				if (arr[cordShip1 - 1][cordShip2 + 1] == 127
+					|| arr[cordShip1 - 2][cordShip2] == 127
+					|| arr[cordShip1 - 2][cordShip2 - 1] == 127
+					|| arr[cordShip1 - 2][cordShip2 + 1] == 127
+					|| arr[cordShip1 - 1][cordShip2 - 1] == 127
+					|| arr[cordShip1][cordShip2 + 1] == 127
+					|| arr[cordShip1][cordShip2 - 1] == 127)
+				{
+					i--;
+					continue;
+				}
+
+				else
+				{
+					arr[cordShip1][cordShip2] = 127;
+					arr[cordShip1 - 1][cordShip2] = 127;
+				}
+			}
+
+			else if (arr[cordShip1 + 1][cordShip2] == 127
+				|| arr[cordShip1 - 2][cordShip2] == 127
+				|| arr[cordShip1][cordShip2 + 1] == 127
+				|| arr[cordShip1][cordShip2 - 1] == 127
+				|| arr[cordShip1 - 2][cordShip2 - 1] == 127
+				|| arr[cordShip1 - 2][cordShip2 + 1] == 127
+				|| arr[cordShip1-1][cordShip2 + 1] == 127
+				|| arr[cordShip1-1][cordShip2 - 1] == 127
+				|| arr[cordShip1 + 1][cordShip2 - 1] == 127
+				|| arr[cordShip1 + 1][cordShip2 + 1] == 127)
 			{
 				i--;
 				continue;
@@ -435,13 +767,83 @@ void addShipEnemy(char** arr) {
 				continue;
 			}
 
-			else if (cordShip2 == 9)
+			else if (cordShip2 >= 9)
 			{
 				i--;
 				continue;
 			}
 
-			else if (arr[cordShip1][cordShip2 + 1] == 127)
+			else if (cordShip2 == 8) 
+			{
+				if (arr[cordShip1 + 1][cordShip2] == 127
+					|| arr[cordShip1 - 1][cordShip2] == 127
+					|| arr[cordShip1][cordShip2 - 1] == 127
+					|| arr[cordShip1 - 1][cordShip2 - 1] == 127
+					|| arr[cordShip1 - 1][cordShip2 + 1] == 127
+					|| arr[cordShip1 + 1][cordShip2 + 1] == 127
+					|| arr[cordShip1 + 1][cordShip2 - 1] == 127)
+				{
+					i--;
+					continue;
+				}
+
+				else 
+				{
+					arr[cordShip1][cordShip2] = 127;
+					arr[cordShip1][cordShip2 + 1] = 127;
+				}
+			}
+
+			else if(cordShip1 == 0)
+			{
+				if (arr[cordShip1 + 1][cordShip2] == 127
+					|| arr[cordShip1][cordShip2 - 1] == 127
+					|| arr[cordShip1][cordShip2 + 2] == 127
+					|| arr[cordShip1 + 1][cordShip2 + 2] == 127
+					|| arr[cordShip1 + 1][cordShip2 + 1] == 127
+					|| arr[cordShip1 + 1][cordShip2 - 1] == 127)
+				{
+					i--;
+					continue;
+				}
+
+				else
+				{
+					arr[cordShip1][cordShip2] = 127;
+					arr[cordShip1][cordShip2 + 1] = 127;
+				}
+			}
+
+			else if (cordShip1 == 9)
+			{
+				if  (arr[cordShip1 - 1][cordShip2] == 127
+					|| arr[cordShip1][cordShip2 - 1] == 127
+					|| arr[cordShip1][cordShip2 + 2] == 127
+					|| arr[cordShip1 - 1][cordShip2 - 1] == 127
+					|| arr[cordShip1 - 1][cordShip2 + 1] == 127
+					|| arr[cordShip1 - 1][cordShip2 + 2] == 127)
+				{
+					i--;
+					continue;
+				}
+
+				else
+				{
+					arr[cordShip1][cordShip2] = 127;
+					arr[cordShip1][cordShip2 + 1] = 127;
+				}
+			}
+			
+			else if (arr[cordShip1+1][cordShip2] == 127
+				     ||arr[cordShip1-1][cordShip2] == 127
+					 ||arr[cordShip1][cordShip2-1] == 127
+					 || arr[cordShip1][cordShip2+2] == 127
+					 || arr[cordShip1-1][cordShip2-1] == 127
+					 || arr[cordShip1-1][cordShip2+1] == 127
+					 || arr[cordShip1-1][cordShip2+2] == 127
+					 || arr[cordShip1+1][cordShip2+2] == 127
+					 || arr[cordShip1+1][cordShip2+1] == 127
+					 || arr[cordShip1+1][cordShip2-1] == 127)
 			{
 				i--;
 				continue;
@@ -455,133 +857,133 @@ void addShipEnemy(char** arr) {
 		}
 	}
 
-	for (int i = 0; i < 2; i++)//Расположение трехпалубного корабля
-	{
-		cordShip1 = random(0, 9);
-		cordShip2 = random(0, 9);
-		int verHor = random(1, 2);
+	//for (int i = 0; i < 2; i++)//Расположение трехпалубного корабля
+	//{
+	//	cordShip1 = random(0, 9);
+	//	cordShip2 = random(0, 9);
+	//	int verHor = random(1, 2);
 
-		if (verHor == 1)
-		{
-			vertical = true;
-		}
+	//	if (verHor == 1)
+	//	{
+	//		vertical = true;
+	//	}
 
-		else if (verHor == 2)
-		{
-			vertical = false;
-		}
+	//	else if (verHor == 2)
+	//	{
+	//		vertical = false;
+	//	}
 
-		if (vertical)
-		{
-			if (cordShip1 == 0 || cordShip1 == 1) {
-				i--;
-				continue;
-			}
+	//	if (vertical)
+	//	{
+	//		if (cordShip1 == 0 || cordShip1 == 1) {
+	//			i--;
+	//			continue;
+	//		}
 
-			else if (arr[cordShip1][cordShip2] == 127 || arr[cordShip1 - 1][cordShip2] == 127
-				|| arr[cordShip1 - 2][cordShip2] == 127)
-			{
-				i--;
-				continue;
-			}
+	//		else if (arr[cordShip1][cordShip2] == 127 || arr[cordShip1 - 1][cordShip2] == 127
+	//			|| arr[cordShip1 - 2][cordShip2] == 127)
+	//		{
+	//			i--;
+	//			continue;
+	//		}
 
-			else {
-				for (int i = 0; i < 3; i++)
-				{
-					arr[cordShip1 - i][cordShip2] = 127;
-				}
-			}
-		}
+	//		else {
+	//			for (int i = 0; i < 3; i++)
+	//			{
+	//				arr[cordShip1 - i][cordShip2] = 127;
+	//			}
+	//		}
+	//	}
 
-		else if (vertical == false) {
-			if (cordShip2 == 8 || cordShip2 == 9)
-			{
-				i--;
-				continue;
-			}
+	//	else if (vertical == false) {
+	//		if (cordShip2 == 8 || cordShip2 == 9)
+	//		{
+	//			i--;
+	//			continue;
+	//		}
 
-			else if (arr[cordShip1][cordShip2] == 127 || arr[cordShip1][cordShip2 + 1] == 127
-				|| arr[cordShip1][cordShip2 + 2] == 127)
-			{
-				i--;
-				continue;
-			}
+	//		else if (arr[cordShip1][cordShip2] == 127 || arr[cordShip1][cordShip2 + 1] == 127
+	//			|| arr[cordShip1][cordShip2 + 2] == 127)
+	//		{
+	//			i--;
+	//			continue;
+	//		}
 
-			else {
-				for (int i = 0; i < 3; i++)
-				{
-					arr[cordShip1][cordShip2 + i] = 127;
-				}
-			}
-		}
-	}
+	//		else {
+	//			for (int i = 0; i < 3; i++)
+	//			{
+	//				arr[cordShip1][cordShip2 + i] = 127;
+	//			}
+	//		}
+	//	}
+	//}
 
-	for (int i = 0; i < 1; i++)//Заполнение четырехпалубного
-	{
-		cordShip1 = random(0, 9);
-		cordShip2 = random(0, 9);
-		int verHor = random(1, 2);
+	//for (int i = 0; i < 1; i++)//Заполнение четырехпалубного
+	//{
+	//	cordShip1 = random(0, 9);
+	//	cordShip2 = random(0, 9);
+	//	int verHor = random(1, 2);
 
-		if (verHor == 1)
-		{
-			vertical = true;
-		}
+	//	if (verHor == 1)
+	//	{
+	//		vertical = true;
+	//	}
 
-		else if (verHor == 2)
-		{
-			vertical = false;
-		}
+	//	else if (verHor == 2)
+	//	{
+	//		vertical = false;
+	//	}
 
-		if (vertical)
-		{
-			if (cordShip1 == 0
-				|| cordShip1 == 1
-				|| cordShip1 == 2)
-			{
-				i--;
-				continue;
-			}
+	//	if (vertical)
+	//	{
+	//		if (cordShip1 == 0
+	//			|| cordShip1 == 1
+	//			|| cordShip1 == 2)
+	//		{
+	//			i--;
+	//			continue;
+	//		}
 
-			else if (arr[cordShip1][cordShip2] == 127
-				|| arr[cordShip1 - 1][cordShip2] == 127
-				|| arr[cordShip1 - 3][cordShip2] == 127
-				|| arr[cordShip1 - 2][cordShip2] == 127)
-			{
-				i--;
-				continue;
-			}
+	//		else if (arr[cordShip1][cordShip2] == 127
+	//			|| arr[cordShip1 - 1][cordShip2] == 127
+	//			|| arr[cordShip1 - 3][cordShip2] == 127
+	//			|| arr[cordShip1 - 2][cordShip2] == 127)
+	//		{
+	//			i--;
+	//			continue;
+	//		}
 
-			else {
-				for (int i = 0; i < 4; i++)
-				{
-					arr[cordShip1 - i][cordShip2] = 127;
-				}
-			}
-		}
-		else if (vertical == false) {
-			if (cordShip2 == 8 || cordShip2 == 9 || cordShip2 == 7)
-			{
-				i--;
-				continue;
-			}
+	//		else {
+	//			for (int i = 0; i < 4; i++)
+	//			{
+	//				arr[cordShip1 - i][cordShip2] = 127;
+	//			}
+	//		}
+	//	}
+	//	else if (vertical == false) {
+	//		if (cordShip2 == 8 || cordShip2 == 9 || cordShip2 == 7)
+	//		{
+	//			i--;
+	//			continue;
+	//		}
 
-			else if (arr[cordShip1][cordShip2] == 127
-				|| arr[cordShip1][cordShip2 + 1] == 127
-				|| arr[cordShip1][cordShip2 + 3] == 127
-				|| arr[cordShip1][cordShip2 + 2] == 127)
-			{
-				i--;
-				continue;
-			}
+	//		else if (arr[cordShip1][cordShip2] == 127
+	//			|| arr[cordShip1][cordShip2 + 1] == 127
+	//			|| arr[cordShip1][cordShip2 + 3] == 127
+	//			|| arr[cordShip1][cordShip2 + 2] == 127)
+	//		{
+	//			i--;
+	//			continue;
+	//		}
 
-			else {
-				for (int i = 0; i < 4; i++)
-				{
-					arr[cordShip1][cordShip2 + i] = 127;
-				}
-			}
-		}
-	}
+	//		else {
+	//			for (int i = 0; i < 4; i++)
+	//			{
+	//				arr[cordShip1][cordShip2 + i] = 127;
+	//			}
+	//		}
+	//	}
+	//}
 }
 
 int main()
@@ -599,7 +1001,8 @@ int main()
 	Sleep(2000);
 	system("cls");*/
 	addShipsPlayer(field_player);
-	/*addShipEnemy(field_enemy);*/
+	/*addShipEnemy(field_enemy);
+	showField(field_enemy);*/
 	/*cout << endl;
 	cout << "Field of player" << endl;
 	showField(field_player);
