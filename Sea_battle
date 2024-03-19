@@ -847,7 +847,7 @@ void addShipEnemy(char** arr) {
 		cordShip1 = random(0, 9);
 		cordShip2 = random(0, 9);
 
-		if (arr[cordShip1][cordShip2] == 127) 
+		if (arr[cordShip1][cordShip2] == 127)
 		{
 			i--;
 			continue;
@@ -907,7 +907,7 @@ void addShipEnemy(char** arr) {
 			i--;
 			continue;
 		}
-		
+
 		else
 		{
 			arr[cordShip1][cordShip2] = 127;
@@ -919,7 +919,7 @@ void addShipEnemy(char** arr) {
 		int verHor = random(1, 2);
 		cordShip1 = random(0, 9);
 		cordShip2 = random(0, 9);
-		
+
 		if (arr[cordShip1][cordShip2] == 127)
 		{
 			i--;
@@ -948,7 +948,7 @@ void addShipEnemy(char** arr) {
 				i--;
 				continue;
 			}
-			
+
 			else if (cordShip1 == 1)
 			{
 				if (arr[cordShip1 + 1][cordShip2] == 127
@@ -1121,7 +1121,7 @@ void addShipEnemy(char** arr) {
 			i--;
 			continue;
 		}
-		
+
 		if (verHor == 1)
 		{
 			vertical = true;
@@ -1139,7 +1139,7 @@ void addShipEnemy(char** arr) {
 				continue;
 			}
 
-			else if (arr[cordShip1][cordShip2] == 127) 
+			else if (arr[cordShip1][cordShip2] == 127)
 			{
 				i--;
 				continue;
@@ -1337,7 +1337,7 @@ void addShipEnemy(char** arr) {
 			i--;
 			continue;
 		}
-		
+
 		if (verHor == 1)
 		{
 			vertical = true;
@@ -1558,7 +1558,7 @@ void addShipEnemy(char** arr) {
 	}
 }
 
-void checkShoot(char** arr,int cordShoot1,int cordShoot2) 
+void checkShoot(char** arr, int cordShoot1, int cordShoot2)
 {
 	for (int i = 0; i < 1; i++)
 	{
@@ -1576,15 +1576,24 @@ void checkShoot(char** arr,int cordShoot1,int cordShoot2)
 			continue;
 		}
 
-		else 
+
+		else
 		{
-			if (arr[cordShoot1][cordShoot2] == 126) {
+			if (arr[cordShoot1][cordShoot2] == 'O' || arr[cordShoot1][cordShoot2] == '¤')
+			{
+				cout << "Вы уже сюда стреляли!" << endl;
+				showField(arr);
+				i--;
+				continue;
+			}
+
+			else if (arr[cordShoot1][cordShoot2] == 126) {
 				cout << "Мимо!" << endl;
 				arr[cordShoot1][cordShoot2] = 'O';
 				showField(arr);
 			}
 
-			else if (arr[cordShoot1][cordShoot2] == 127) 
+			else if (arr[cordShoot1][cordShoot2] == 127)
 			{
 				cout << "Попал!" << endl;
 				arr[cordShoot1][cordShoot2] = '¤';
@@ -1610,7 +1619,7 @@ int main()
 	showField(field_player);
 	Sleep(2000);
 	system("cls");*/
-	/*addShipsPlayer(field_player);*/
+	addShipsPlayer(field_player);
 	addShipEnemy(field_enemy);
 	showField(field_enemy);
 	int cord1;
