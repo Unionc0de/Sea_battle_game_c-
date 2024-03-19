@@ -1579,17 +1579,20 @@ bool checkHeat(char**& arr, int cordShoot1, int cordShoot2)//проверка п
 	}
 }
 
-//bool checkRepeatHeat(char**& arr, int cordShoot1, int cordShoot2) {
-//	if (arr[cordShoot1][cordShoot2] == 'O' || arr[cordShoot1][cordShoot2] == '¤')
-//	{
-//		return false;
-//	}
-//
-//	else
-//	{
-//		return true;
-//	}
-//}
+bool checkHeatPlayer(char**& arr, char**& arr2, int cordShoot1, int cordShoot2)//проверка попадания 
+{
+	if (arr[cordShoot1][cordShoot2] == 126)
+	{
+		arr2[cordShoot1][cordShoot2] = 'O';
+		return false;
+	}
+
+	else if (arr[cordShoot1][cordShoot2] == 127)
+	{
+		arr2[cordShoot1][cordShoot2] = '¤';
+		return true;
+	}
+}
 
 void shootOfPlayer(char** &arr,char** &arr2)//Стрельба игрока
 {
@@ -1605,7 +1608,6 @@ void shootOfPlayer(char** &arr,char** &arr2)//Стрельба игрока
 	if (cordShoot1 > 9 || cordShoot1 < 0)
 	{
 		cout << "Вы не можете стрелять за пределами поля! " << endl;
-
 	}
 
 	else if (cordShoot2 > 9 || cordShoot2 < 0)
@@ -1623,7 +1625,7 @@ void shootOfPlayer(char** &arr,char** &arr2)//Стрельба игрока
 		}
 
 		else {
-			if (checkHeat(arr, cordShoot1, cordShoot2) == true)
+			if (checkHeatPlayer(arr,arr2,cordShoot1, cordShoot2) == true)
 			{
 				cout << "Игрок попал!" << endl;
 				arr2[cordShoot1][cordShoot2] = '¤';
@@ -1631,7 +1633,7 @@ void shootOfPlayer(char** &arr,char** &arr2)//Стрельба игрока
 				countOfPlayer++;
 			}
 
-			else if (checkHeat(arr, cordShoot1, cordShoot2) == false)
+			else if (checkHeatPlayer(arr, arr2,cordShoot1, cordShoot2) == false)
 			{
 				cout << "Игрок не попал!" << endl;
 				arr2[cordShoot1][cordShoot2] = 'O';
@@ -1641,58 +1643,6 @@ void shootOfPlayer(char** &arr,char** &arr2)//Стрельба игрока
 	}
 	Sleep(5000);
 }
-
-void shootOfPlayer(char**& arr, char**& arr2)//Стрельба игрока
-{
-	system("cls");
-	cout << "Сейчас ходит игрок..." << endl;
-	Sleep(2000);
-	int cordShoot1;
-	int cordShoot2;
-	cout << endl;
-	cout << "Введите координаты для выстрела: " << endl;
-	cin >> cordShoot1 >> cordShoot2;
-
-	if (cordShoot1 > 9 || cordShoot1 < 0)
-	{
-		cout << "Вы не можете стрелять за пределами поля! " << endl;
-
-	}
-
-	else if (cordShoot2 > 9 || cordShoot2 < 0)
-	{
-		cout << "Вы не можете стрелять за пределами поля! " << endl;
-	}
-
-
-	else
-	{
-		if (arr2[cordShoot1][cordShoot2] == 'O' || arr2[cordShoot1][cordShoot2] == '¤')
-		{
-			cout << "Вы уже сюда стреляли!" << endl;
-			showField(arr2);
-		}
-
-		else {
-			if (checkHeat(arr, cordShoot1, cordShoot2) == true)
-			{
-				cout << "Игрок попал!" << endl;
-				arr2[cordShoot1][cordShoot2] = '¤';
-				showField(arr2);
-				countOfPlayer++;
-			}
-
-			else if (checkHeat(arr, cordShoot1, cordShoot2) == false)
-			{
-				cout << "Игрок не попал!" << endl;
-				arr2[cordShoot1][cordShoot2] = 'O';
-				showField(arr2);
-			}
-		}
-	}
-	Sleep(5000);
-}
-
 
 void shootOfComputer(char** &arr)//Стрельба компьютера
 {
