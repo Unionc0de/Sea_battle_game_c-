@@ -1683,17 +1683,17 @@ int main()
 {
 	setlocale(LC_ALL, "rus");
 	srand(time(NULL));
-	//system("color B0");
+	system("color B0");
 	cout << "\t\t\t\tДобро пожаловать в union`s sea battle!" << endl;
-	Sleep(2000);
-	system("cls");
-	cout << "Сейчас заполняет поле игрок!" << endl;
 	Sleep(2000);
 	system("cls");
 	fillField(field_player);
 	fillField(field_enemy);
 	fillField(field_enemy_player);
-	addShipsEnemy(field_player);
+	cout << "Сейчас заполняет поле игрок!" << endl;
+	Sleep(2000);
+	system("cls");
+	addShipsPlayer(field_player);
 	Sleep(2000);
 	system("cls");
 	cout << "Сейчас заполняет поле компьютер!" << endl;
