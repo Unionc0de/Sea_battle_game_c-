@@ -3,6 +3,12 @@
 #define random(min,max) (min + rand() % (max - min + 1))
 using namespace std;
 
+char** field_player = new char* [10];
+char** field_enemy = new char* [10];
+char** field_enemy_player = new char* [10];
+int countOfPlayer = 0;
+int countOfComputer = 0;
+
 //O - символ промаха 
 //¤ - символ попадания 
 //~ - заполнение поля - 126
@@ -837,7 +843,7 @@ void addShipsPlayer(char** arr)
 	}
 }
 
-void addShipEnemy(char** arr) {
+void addShipsEnemy(char** arr) {
 	int size = _msize(arr) / sizeof(arr[0]);
 	int cordShip1;
 	int cordShip2;
@@ -1558,89 +1564,200 @@ void addShipEnemy(char** arr) {
 	}
 }
 
-void checkShoot(char** arr, int cordShoot1, int cordShoot2)
+bool checkHeat(char**& arr, int cordShoot1, int cordShoot2)//проверка попадания 
 {
-	for (int i = 0; i < 1; i++)
+	if (arr[cordShoot1][cordShoot2] == 126)
 	{
-		if (cordShoot1 > 9 || cordShoot1 < 0)
-		{
-			cout << "Вы не можете стрелять за пределами поля! " << endl;
-			i--;
-			continue;
-		}
+		arr[cordShoot1][cordShoot2] = 'O';
+		return false;
+	}
 
-		else if (cordShoot2 > 9 || cordShoot2 < 0)
-		{
-			cout << "Вы не можете стрелять за пределами поля! " << endl;
-			i--;
-			continue;
-		}
-
-
-		else
-		{
-			if (arr[cordShoot1][cordShoot2] == 'O' || arr[cordShoot1][cordShoot2] == '¤')
-			{
-				cout << "Вы уже сюда стреляли!" << endl;
-				showField(arr);
-				i--;
-				continue;
-			}
-
-			else if (arr[cordShoot1][cordShoot2] == 126) {
-				cout << "Мимо!" << endl;
-				arr[cordShoot1][cordShoot2] = 'O';
-				showField(arr);
-			}
-
-			else if (arr[cordShoot1][cordShoot2] == 127)
-			{
-				cout << "Попал!" << endl;
-				arr[cordShoot1][cordShoot2] = '¤';
-				showField(arr);
-			}
-		}
+	else if (arr[cordShoot1][cordShoot2] == 127)
+	{
+		arr[cordShoot1][cordShoot2] = '¤';
+		return true;
 	}
 }
 
+//bool checkRepeatHeat(char**& arr, int cordShoot1, int cordShoot2) {
+//	if (arr[cordShoot1][cordShoot2] == 'O' || arr[cordShoot1][cordShoot2] == '¤')
+//	{
+//		return false;
+//	}
+//
+//	else
+//	{
+//		return true;
+//	}
+//}
 
+void shootOfPlayer(char** &arr,char** &arr2)//Стрельба игрока
+{
+	system("cls");
+	cout << "Сейчас ходит игрок..." << endl;
+	Sleep(2000);
+	int cordShoot1;
+	int cordShoot2;
+	cout << endl;
+	cout << "Введите координаты для выстрела: " << endl;
+	cin >> cordShoot1 >> cordShoot2;
+	
+	if (cordShoot1 > 9 || cordShoot1 < 0)
+	{
+		cout << "Вы не можете стрелять за пределами поля! " << endl;
+
+	}
+
+	else if (cordShoot2 > 9 || cordShoot2 < 0)
+	{
+		cout << "Вы не можете стрелять за пределами поля! " << endl;
+	}
+
+
+	else
+	{
+		if (arr2[cordShoot1][cordShoot2] == 'O' || arr2[cordShoot1][cordShoot2] == '¤')
+		{
+			cout << "Вы уже сюда стреляли!" << endl;
+			showField(arr2);
+		}
+
+		else {
+			if (checkHeat(arr, cordShoot1, cordShoot2) == true)
+			{
+				cout << "Игрок попал!" << endl;
+				arr2[cordShoot1][cordShoot2] = '¤';
+				showField(arr2);
+				countOfPlayer++;
+			}
+
+			else if (checkHeat(arr, cordShoot1, cordShoot2) == false)
+			{
+				cout << "Игрок не попал!" << endl;
+				arr2[cordShoot1][cordShoot2] = 'O';
+				showField(arr2);
+			}
+		}
+	}
+	Sleep(5000);
+}
+
+void shootOfPlayer(char**& arr, char**& arr2)//Стрельба игрока
+{
+	system("cls");
+	cout << "Сейчас ходит игрок..." << endl;
+	Sleep(2000);
+	int cordShoot1;
+	int cordShoot2;
+	cout << endl;
+	cout << "Введите координаты для выстрела: " << endl;
+	cin >> cordShoot1 >> cordShoot2;
+
+	if (cordShoot1 > 9 || cordShoot1 < 0)
+	{
+		cout << "Вы не можете стрелять за пределами поля! " << endl;
+
+	}
+
+	else if (cordShoot2 > 9 || cordShoot2 < 0)
+	{
+		cout << "Вы не можете стрелять за пределами поля! " << endl;
+	}
+
+
+	else
+	{
+		if (arr2[cordShoot1][cordShoot2] == 'O' || arr2[cordShoot1][cordShoot2] == '¤')
+		{
+			cout << "Вы уже сюда стреляли!" << endl;
+			showField(arr2);
+		}
+
+		else {
+			if (checkHeat(arr, cordShoot1, cordShoot2) == true)
+			{
+				cout << "Игрок попал!" << endl;
+				arr2[cordShoot1][cordShoot2] = '¤';
+				showField(arr2);
+				countOfPlayer++;
+			}
+
+			else if (checkHeat(arr, cordShoot1, cordShoot2) == false)
+			{
+				cout << "Игрок не попал!" << endl;
+				arr2[cordShoot1][cordShoot2] = 'O';
+				showField(arr2);
+			}
+		}
+	}
+	Sleep(5000);
+}
+
+
+void shootOfComputer(char** &arr)//Стрельба компьютера
+{
+	system("cls");
+	cout << "Сейчас ходит компьютер..." << endl;
+	Sleep(2000);
+
+	do {
+		int cordShoot1 = random(0, 9);
+		int cordShoot2 = random(0, 9);
+
+		if (arr[cordShoot1][cordShoot2] == 'O' || arr[cordShoot1][cordShoot2] == '¤') {
+			continue;
+		}
+		else 
+		{
+			if (checkHeat(arr, cordShoot1, cordShoot2)) {
+				countOfComputer++;
+				cout << "Компьютер попал!" << endl;
+				arr[cordShoot1][cordShoot2] = '¤';
+				cout << endl;
+				showField(arr);
+				break;
+			}
+			else {
+				cout << "Компьютер не попал!" << endl;
+				arr[cordShoot1][cordShoot2] = 'O';
+				cout << endl;
+				showField(arr);
+				break;
+			}
+		}
+	} while (true);
+	Sleep(5000);
+}
 
 int main()
 {
 	setlocale(LC_ALL, "rus");
 	srand(time(NULL));
-
-	char** field_player = new char* [10];
-	char** field_enemy = new char* [10];
-
-	fillField(field_player);
-	fillField(field_enemy);
-	/*cout << "Field of player" << endl;
-	showField(field_player);
-	Sleep(2000);
-	system("cls");*/
-	addShipsPlayer(field_player);
-	addShipEnemy(field_enemy);
-	showField(field_enemy);
-	int cord1;
-	int cord2;
-	for (int i = 0; i < 4; i++)
-	{
-		Sleep(5000);
-		system("cls");
-		cin >> cord1 >> cord2;
-		cout << "Введите координаты" << endl;
-		cout << endl;
-		checkShoot(field_enemy, cord1, cord2);
-	}
-	/*cout << endl;
-	cout << "Field of player" << endl;
-	showField(field_player);
+	//system("color B0");
+	cout << "\t\t\t\tДобро пожаловать в union`s sea battle!" << endl;
 	Sleep(2000);
 	system("cls");
-	cout << endl;*/
-	/*cout << "Field of enemy" << endl;
-	showField(field_enemy);
-	Sleep(2000);*/
-	/*system("cls");*/
+	cout << "Сейчас заполняет поле игрок!" << endl;
+	Sleep(2000);
+	system("cls");
+	fillField(field_player);
+	fillField(field_enemy);
+	fillField(field_enemy_player);
+	addShipsEnemy(field_player);
+	Sleep(2000);
+	system("cls");
+	cout << "Сейчас заполняет поле компьютер!" << endl;
+	Sleep(2000);
+	system("cls");
+	addShipsEnemy(field_enemy);
+	
+	while (countOfPlayer != 20 || countOfComputer != 20) {
+		shootOfPlayer(field_enemy, field_enemy_player); 
+		shootOfComputer(field_player);
+		Sleep(5000);
+		system("cls");
+		cout << "Teкущий результат: \nКомпьютер: " << countOfComputer << "\nИгрок: " << countOfPlayer << endl;
+		Sleep(5000);
+		system("cls");
+	}
 }
