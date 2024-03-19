@@ -16,12 +16,6 @@ int countOfComputer = 0;
 
 // 16 / 164 / 127
 
-//void show() {
-//	for (int i = 0; i < 600; i++) {
-//		cout << i << " - " << (char)i << endl;
-//	}
-//}
-
 void fillField(char** arr) {
 	int size = _msize(arr) / sizeof(arr[0]);
 	for (int i = 0; i < size; i++) {
@@ -62,7 +56,7 @@ void addShipsPlayer(char** arr)
 		if (arr[cordShip1][cordShip2] == 127) {
 			cout << "Здесь уже есть корабль!" << endl;
 			showField(arr);
-			Sleep(3000);
+			Sleep(2000);
 			system("cls");
 			i--;
 			continue;
@@ -142,10 +136,9 @@ void addShipsPlayer(char** arr)
 			system("cls");
 		}
 	}
-	system("cls");
+
 	for (int i = 0; i < 3; i++) //Расположение двухпалубного корабля
 	{
-		showField(arr);
 		Sleep(7000);
 		system("cls");
 		int verHor = 0;
@@ -234,14 +227,6 @@ void addShipsPlayer(char** arr)
 				|| arr[cordShip1 + 1][cordShip2 + 1] == 127)
 			{
 				cout << "Здесь нельзя поставить корабль!" << endl;
-				showField(arr);
-				i--;
-				continue;
-			}
-
-			else if (arr[cordShip1 - 1][cordShip2] == 127)
-			{
-				cout << "Здесь уже есть корабль!" << endl;
 				showField(arr);
 				i--;
 				continue;
@@ -367,10 +352,9 @@ void addShipsPlayer(char** arr)
 			}
 		}
 	}
-	system("cls");
+
 	for (int i = 0; i < 2; i++)//Расположение трехпалубного корабля
 	{
-		showField(arr);
 		int verHor;
 		Sleep(7000);
 		system("cls");
@@ -599,7 +583,6 @@ void addShipsPlayer(char** arr)
 
 	for (int i = 0; i < 1; i++)//Заполнение четырехпалубного
 	{
-		showField(arr);
 		int verHor;
 		Sleep(7000);
 		system("cls");
@@ -1701,7 +1684,8 @@ int main()
 	system("cls");
 	addShipsEnemy(field_enemy);
 	
-	while (countOfPlayer != 20 || countOfComputer != 20) {
+	while (countOfPlayer != 20 || countOfComputer != 20) 
+	{
 		shootOfPlayer(field_enemy, field_enemy_player); 
 		shootOfComputer(field_player);
 		Sleep(5000);
